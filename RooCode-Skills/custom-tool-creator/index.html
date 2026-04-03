@@ -3,223 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Tool Creator | Agent Skills Hub</title>
+    <title>Custom Tool Creator Skill - Roo Agent Skills Gallery</title>
     <style>
+        :root {
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --warning: #f59e0b;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #667eea;
-            margin-top: 0;
-        }
-        h2 {
-            color: #764ba2;
-            margin-top: 25px;
-        }
-        .lang-switcher {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .lang-btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background: #667eea;
-            color: white;
-            font-weight: bold;
-        }
-        .lang-btn.active {
-            background: #764ba2;
-        }
-        .content-en, .content-ru {
-            display: none;
-        }
-        .content-en.active, .content-ru.active {
-            display: block;
-        }
-        pre {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        code {
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-        a {
-            color: #667eea;
-        }
-        ul, ol {
-            line-height: 1.8;
-        }
-        .warning {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 15px 0;
-        }
-        .biohazard {
-            background: #ff0000;
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.3rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            border: 5px solid #cc0000;
-            box-shadow: 0 4px 25px rgba(255,0,0,0.4);
+            min-height: 100vh;
         }
-        .biohazard-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* BIOHAZARD WARNING BANNER */
+        .biotzard-banner {
+            background: linear-gradient(135deg, var(--danger) 0%, #991b1b 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 4px solid #7f1d1d;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .biotzard-banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 3px;
         }
-        .collection-note {
+
+        .biotzard-banner p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .biotzard-banner .warning-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: rgba(255,255,255,0.15);
-            padding: 12px;
+            padding: 0.75rem 1.5rem;
             border-radius: 8px;
-            margin-top: 12px;
-            font-size: 1rem;
+            color: white;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .lang-switch {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(37, 99, 235, 0.2);
+        }
+
+        .content-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .feature-card li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .collection-note {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .collection-note p {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        code, pre {
+            background: rgba(0,0,0,0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            padding: 1rem;
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .hidden { display: none; }
+
+        @media (max-width: 768px) {
+            .biotzard-banner h1 { font-size: 1.8rem; }
+            .biotzard-banner p { font-size: 1rem; }
+            .container { padding: 0 0.5rem; }
+            .content-section { padding: 2rem 0; }
         }
     </style>
 </head>
 <body>
-    <a href="../../index.html" class="back-link">← Back to all skills / ← Назад ко всем скиллам</a>
-    
-    <div class="biohazard">
-        <div class="biohazard-title">☣️ BIOHAZARD - AI-GENERATED CONTENT ☣️</div>
-        <div>
-            <strong>English:</strong> Everything on this page was created by AI (Step-3.5-Flash). The repository owner admits ignorance of code and cannot verify accuracy or safety. Content may contain errors or malicious code (unintentional). <strong>This repository is for personal collection only and is made public for convenience.</strong> Use at your own risk. No responsibility assumed. Reviewer must verify everything themselves!
-        </div>
-        <div class="collection-note">
-            <em>This is my personal skill collection — I make it public simply because it's more convenient for me.</em>
-            <br>
-            <em>Это моя личная коллекция скиллов — я делаю её открытой просто потому что мне так удобнее.</em>
-        </div>
-        <div style="margin-top: 15px;">
-            <strong>Русский:</strong> Всё на этой странице создано ИИ (Step-3.5-Flash). Владелец репозитория признаёт свою неграмотность в коде и не может гарантировать точность или безопасность. Контент может содержать ошибки или вредоносный код (непреднамеренно). <strong>Этот репозиторий чисто для моей коллекции и просто я его сделал открытым чтобы мне было удобнее.</strong> Используйте на свой страх и риск. Никакой ответственности не берётся. Проверяйте всё самостоятельно!
-        </div>
+    <!-- BIOHAZARD WARNING -->
+    <div class="biotzard-banner">
+        <div class="warning-icon">☢️⚠️</div>
+        <h1 data-lang="ru">⚠️ ОПАСНОСТЬ: ИИ-ГЕНЕРИРУЕМОЕ СОДЕРЖАНИЕ</h1>
+        <h1 data-lang="en" class="hidden">⚠️ DANGER: AI-GENERATED CONTENT</h1>
+
+        <p data-lang="ru">
+            <strong>ВСЁ содержимое этой страницы автоматически создано искусственным интеллектом.</strong><br>
+            Не доверяйте слепо. Проверяйте факты, код и инструкции перед использованием.<br>
+            <strong>Отсутствие человеческого контроля может привести к ошибкам, уязвимостям или вреду.</strong>
+        </p>
+        <p data-lang="en" class="hidden">
+            <strong>ALL content on this page is AI-generated.</strong><br>
+            Do not blindly trust. Verify facts, code, and instructions before use.<br>
+            <strong>Lack of human review may cause errors, vulnerabilities, or harm.</strong>
+        </p>
+
+        <a href="../../index.html" class="back-link">
+            <span>←</span>
+            <span data-lang="ru">Назад к галерее</span>
+            <span data-lang="en" class="hidden">Back to Gallery</span>
+        </a>
     </div>
-    
-    <div class="card">
-        <h1>🛠️ Custom Tool Creator</h1>
-        
-        <div class="lang-switcher">
-            <button class="lang-btn active" onclick="showLang('en')">English</button>
-            <button class="lang-btn" onclick="showLang('ru')">Русский</button>
-        </div>
-        
-        <div id="content-en" class="content-en active">
-            <h2>📖 Overview</h2>
-            <p>The <strong>Custom Tool Creator</strong> skill is an comprehensive guide for building custom tools for Roo agents. It covers all supported formats: CommonJS, ES Modules, and TypeScript, providing templates, best practices, and security guidelines.</p>
-            
-            <h2>✨ Features</h2>
-            <ul>
-                <li>Complete templates for CommonJS, ESM, and TypeScript</li>
-                <li>Security best practices and input validation</li>
-                <li>Error handling patterns</li>
-                <li>Testing strategies and examples</li>
-                <li>Deployment and packaging instructions</li>
-                <li>Multi-tool support in a single file</li>
-            </ul>
-            
-            <h2>📚 Documentation Structure</h2>
-            <ul>
-                <li><code>SKILL.md</code> - Main skill documentation</li>
-                <li><code>fragments/</code> - Detailed topic guides</li>
-                <li><code>references/</code> - Reference materials</li>
-                <li><code>assets/</code> - Templates and examples</li>
-                <li><code>scripts/</code> - Validation and testing</li>
-            </ul>
-            
-            <h2>🚀 Quick Start</h2>
-            <p>Choose your preferred format and copy the template from <code>assets/template-*.js</code> or <code>assets/template-typescript.ts</code>. Fill in the tool definition, implement your logic, and follow the security guidelines.</p>
-            
-            <div class="warning">
-                <strong>⚠️ Security Note:</strong> Always validate inputs, handle errors properly, and avoid executing arbitrary code. See <code>references/SECURITY.md</code> for detailed security considerations.
-            </div>
-            
-            <h2>🔗 Resources</h2>
-            <ul>
-                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/SKILL.md">SKILL.md</a> - Complete skill documentation</li>
-                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/references/FORMAT_SPEC.md">Format Specification</a> - Tool format details</li>
-                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/assets/examples/">Examples</a> - Working examples</li>
-            </ul>
-        </div>
-        
-        <div id="content-ru" class="content-ru">
-            <h2>📖 Обзор</h2>
-            <p>Скилл <strong>Custom Tool Creator</strong> — это комплексное руководство по созданию кастомных инструментов для агентов Roo. Освещает все поддерживаемые форматы: CommonJS, ES Modules и TypeScript, предоставляя шаблоны, лучшие практики и руководства по безопасности.</p>
-            
-            <h2>✨ Особенности</h2>
-            <ul>
-                <li>Полные шаблоны для CommonJS, ESM и TypeScript</li>
-                <li>Лучшие практики безопасности и валидация входных данных</li>
-                <li>Паттерны обработки ошибок</li>
-                <li>Стратегии тестирования и примеры</li>
-                <li>Инструкции по развертыванию и упаковке</li>
-                <li>Поддержка нескольких инструментов в одном файле</li>
-            </ul>
-            
-            <h2>📚 Структура документации</h2>
-            <ul>
-                <li><code>SKILL.md</code> - Основная документация скилла</li>
-                <li><code>fragments/</code> - Подробные руководства по темам</li>
-                <li><code>references/</code> - Справочные материалы</li>
-                <li><code>assets/</code> - Шаблоны и примеры</li>
-                <li><code>scripts/</code> - Валидация и тестирование</li>
-            </ul>
-            
-            <h2>🚀 Быстрый старт</h2>
-            <p>Выберите предпочитаемый формат и скопируйте шаблон из <code>assets/template-*.js</code> или <code>assets/template-typescript.ts</code>. Заполните определение инструмента, реализуйте логику и следуйте рекомендациям по безопасности.</p>
-            
-            <div class="warning">
-                <strong>⚠️ Примечание по безопасности:</strong> Всегда валидируйте входные данные, правильно обрабатывайте ошибки и избегайте выполнения произвольного кода. См. <code>references/SECURITY.md</code> для подробных соображений по безопасности.
-            </div>
-            
-            <h2>🔗 Ресурсы</h2>
-            <ul>
-                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/SKILL.md">SKILL.md</a> - Полная документация скилла</li>
-                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/references/FORMAT_SPEC.md">Спецификация формата</a> - Детали формата инструментов</li>
-                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/assets/examples/">Примеры</a> - Рабочие примеры</li>
-            </ul>
-        </div>
+
+    <!-- Language Switcher -->
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('ru')">RU</button>
     </div>
-    
+
+    <div class="container">
+        <!-- DESCRIPTION -->
+        <section class="content-section">
+            <h2 class="section-title" data-lang="ru">📦 Скилл: Custom Tool Creator</h2>
+            <h2 class="section-title hidden" data-lang="en">📦 Skill: Custom Tool Creator</h2>
+
+            <div class="collection-note">
+                <p data-lang="ru">
+                    Это персональное собрание примеров навыков Roo. Данный репозиторий публичен для удобства,
+                    но предназначен только для личного использования. Все скиллы доступны на GitHub.
+                </p>
+                <p data-lang="en" class="hidden">
+                    This is a personal collection of Roo skill examples. This repository is made public for convenience,
+                    but intended for personal use only. All skills are available on GitHub.
+                </p>
+            </div>
+
+            <div class="content-grid">
+                <div class="feature-card">
+                    <h3 data-lang="ru">🎯 Назначение</h3>
+                    <h3 class="hidden" data-lang="en">🎯 Purpose</h3>
+                    <ul>
+                        <li data-lang="ru">Пошаговое руководство по созданию Custom Tools для Roo</li>
+                        <li data-lang="ru">Поддержка всех форматов: CommonJS, ES Modules, TypeScript</li>
+                        <li data-lang="ru">Type-safe контракты, валидация схем, безопасность</li>
+                        <li data-lang="en">Step-by-step guide for building Custom Tools for Roo</li>
+                        <li data-lang="en">Support all formats: CommonJS, ES Modules, TypeScript</li>
+                        <li data-lang="en">Type-safe contracts, schema validation, security</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3 data-lang="ru">✨ Ключевые возможности</h3>
+                    <h3 class="hidden" data-lang="en">✨ Key Features</h3>
+                    <ul>
+                        <li data-lang="ru">Документация по 15 аспектам (базовые концепции → продвинутые паттерны)</li>
+                        <li data-lang="ru">15 фрагментов документации в <code>/fragments/</code></li>
+                        <li data-lang="ru">20 примеров скриптов в <code>/assets/</code></li>
+                        <li data-lang="ru">Шаблоны для CommonJS, TypeScript, <code>package.json</code></li>
+                        <li data-lang="ru">JavaScript валидатор в <code>/scripts/</code></li>
+                        <li data-lang="en">15 documentation fragments covering basics → advanced patterns</li>
+                        <li data-lang="en">15 docs fragments in <code>/fragments/</code></li>
+                        <li data-lang="en">20 example scripts in <code>/assets/</code></li>
+                        <li data-lang="en">Templates: CommonJS, TypeScript, <code>package.json</code></li>
+                        <li data-lang="en">Validation script in <code>/scripts/</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK START -->
+        <section class="content-section">
+            <h2 class="section-title" data-lang="ru">🚀 Быстрый старт</h2>
+            <h2 class="section-title hidden" data-lang="en">🚀 Quick Start</h2>
+
+            <div class="content-grid">
+                <div class="feature-card">
+                    <h3 data-lang="ru">1. Ознакомьтесь с фрагментами</h3>
+                    <h3 class="hidden" data-lang="en">1. Explore fragments</h3>
+                    <ul>
+                        <li data-lang="ru">Откройте <code>/RooCode-Skills/custom-tool-creator/fragments/</code></li>
+                        <li data-lang="ru">Читайте последовательно: <code>01-basics.md</code> → <code>15-resources.md</code></li>
+                        <li data-lang="ru">Каждый фрагмент — это логический блок документации</li>
+                        <li data-lang="en">Open <code>/RooCode-Skills/custom-tool-creator/fragments/</code></li>
+                        <li data-lang="en">Read sequentially: <code>01-basics.md</code> → <code>15-resources.md</code></li>
+                        <li data-lang="en">Each fragment is a logical documentation block</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3 data-lang="ru">2. Изучите примеры</h3>
+                    <h3 class="hidden" data-lang="en">2. Study examples</h3>
+                    <ul>
+                        <li data-lang="ru">Примеры в <code>/RooCode-Skills/custom-tool-creator/assets/</code></li>
+                        <li data-lang="ru">Шаблоны: <code>commonjs.js</code>, <code>typescript.ts</code></li>
+                        <li data-lang="ru">20 практических скриптов для MySQL, Slack, UI и т.д.</li>
+                        <li data-lang="ru">Тематические: <code>files/</code>, <code>system/</code>, <code>api/</code>, <code>transformation/</code></li>
+                        <li data-lang="en">Examples in <code>/RooCode-Skills/custom-tool-creator/assets/</code></li>
+                        <li data-lang="en">Templates: <code>commonjs.js</code>, <code>typescript.ts</code></li>
+                        <li data-lang="en">20 practical scripts: MySQL, Slack, UI, etc.</li>
+                        <li data-lang="en">Categories: <code>files/</code>, <code>system/</code>, <code>api/</code>, <code>transformation/</code></li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3 data-lang="ru">3. Создавайте свои инструменты</h3>
+                    <h3 class="hidden" data-lang="en">3. Build your tools</h3>
+                    <ul>
+                        <li data-lang="ru">Скопируйте шаблон из <code>assets/</code></li>
+                        <li data-lang="ru">Измените <code>name</code>, <code>description</code>, <code>parameters</code></li>
+                        <li data-lang="ru">Реализуйте логику в <code>async execute({ params })</code></li>
+                        <li data-lang="ru">Загрузите через Roo: <code>.roo/skills/your-skill/SKILL.md</code></li>
+                        <li data-lang="en">Copy template from <code>assets/</code></li>
+                        <li data-lang="en">Update <code>name</code>, <code>description</code>, <code>parameters</code></li>
+                        <li data-lang="en">Implement logic in <code>async execute({ params })</code></li>
+                        <li data-lang="en">Deploy via Roo: <code>.roo/skills/your-skill/SKILL.md</code></li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3 data-lang="ru">4. Валидация</h3>
+                    <h3 class="hidden" data-lang="en">4. Validation</h3>
+                    <ul>
+                        <li data-lang="ru">Запустите проверку: <code>node /RooCode-Skills/custom-tool-creator/scripts/validate-skill.js</code></li>
+                        <li data-lang="ru">Валидатор проверит структуру <code>SKILL.md</code></li>
+                        <li data-lang="ru">Он же проверит согласованность фрагментов</li>
+                        <li data-lang="ru">Исправьте ошибки перед загрузкой</li>
+                        <li data-lang="en">Run validator: <code>node /RooCode-Skills/custom-tool-creator/scripts/validate-skill.js</code></li>
+                        <li data-lang="en">Validator checks <code>SKILL.md</code> structure</li>
+                        <li data-lang="en">Also validates fragments consistency</li>
+                        <li data-lang="en">Fix issues before deployment</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRUCTURE -->
+        <section class="content-section">
+            <h2 class="section-title" data-lang="ru">📁 Структура проекта</h2>
+            <h2 class="section-title hidden" data-lang="en">📁 Project Structure</h2>
+
+            <div class="content-grid">
+                <div class="feature-card">
+                    <h3 data-lang="ru">🗂️ Файлы скилла</h3>
+                    <h3 class="hidden" data-lang="en">🗂️ Skill files</h3>
+                    <ul>
+                        <li><code>SKILL.md</code> — метаданные скилла, параметры, параметры-контракты</li>
+                        <li><code>fragments/</code> — 15 Markdown-фрагментов документации</li>
+                        <li><code>assets/</code> — шаблоны, примеры, <code>package.json.template</code>, <code>.env.example</code></li>
+                        <li><code>scripts/</code> — валидатор и утилиты</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3 data-lang="ru">📄 Формат SKILL.md</h3>
+                    <h3 class="hidden" data-lang="en">📄 SKILL.md format</h3>
+                    <ul>
+                        <li data-lang="ru"><code>id</code>, <code>name</code>, <code>description</code> (билингвальные)</li>
+                        <li data-lang="ru"><code>purpose</code>, <code>scope</code> — зоны ответственности</li>
+                        <li data-lang="ru"><code>agent_roles</code>, <code>modes</code> — для какого агента/мода</li>
+                        <li data-lang="ru"><code>parameters</code>, <code>settings</code>, <code>variables</code></li>
+                        <li data-lang="ru"><code>examples</code>, <code>dependencies</code></li>
+                        <li data-lang="en"><code>id</code>, <code>name</code>, <code>description</code> (bilingual)</li>
+                        <li data-lang="en"><code>purpose</code>, <code>scope</code> — responsibility boundaries</li>
+                        <li data-lang="en"><code>agent_roles</code>, <code>modes</code> — agent/mode compatibility</li>
+                        <li data-lang="en"><code>parameters</code>, <code>settings</code>, <code>variables</code></li>
+                        <li data-lang="en"><code>examples</code>, <code>dependencies</code></li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3 data-lang="ru">🔗 Ссылки</h3>
+                    <h3 class="hidden" data-lang="en">🔗 Links</h3>
+                    <ul>
+                        <li data-lang="ru">Фрагменты: <code>/RooCode-Skills/custom-tool-creator/fragments/</code></li>
+                        <li data-lang="ru">Примеры: <code>/RooCode-Skills/custom-tool-creator/assets/</code></li>
+                        <li data-lang="ru">Шаблон <code>package.json</code>: <code>.env.example</code></li>
+                        <li data-lang="ru">Валидатор: <code>/scripts/validate-skill.js</code></li>
+                        <li data-lang="ru">Спецификация: <code>FORMAT_SPEC.md</code> (в корне репозитория)</li>
+                        <li data-lang="en">Fragments: <code>/RooCode-Skills/custom-tool-creator/fragments/</code></li>
+                        <li data-lang="en">Examples: <code>/RooCode-Skills/custom-tool-creator/assets/</code></li>
+                        <li data-lang="en">Template: <code>.env.example</code></li>
+                        <li data-lang="en">Validator: <code>/scripts/validate-skill.js</code></li>
+                        <li data-lang="en">Spec: <code>FORMAT_SPEC.md</code> (repo root)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY WARNING -->
+        <section class="content-section">
+            <div class="feature-card" style="border-color: var(--warning); background: rgba(245, 158, 11, 0.1);">
+                <h3 data-lang="ru">⚠️ Безопасность и аудит</h3>
+                <h3 class="hidden" data-lang="en">⚠️ Security & Audit</h3>
+                <ul>
+                    <li data-lang="ru">Все инструменты требуют ручной проверки перед использованием</li>
+                    <li data-lang="ru">Валидация <code>parameters</code> — обязательна (типы, required, format)</li>
+                    <li data-lang="ru">Никогда не выполняйте произвольный код без sandbox</li>
+                    <li data-lang="ru">API-ключи храните только в <code>.env</code> или менеджере секретов</li>
+                    <li data-lang="en">All tools require manual review before use</li>
+                    <li data-lang="en">Parameter validation is mandatory (types, required, format)</li>
+                    <li data-lang="en">Never execute arbitrary code without sandboxing</li>
+                    <li data-lang="en">API keys only in <code>.env</code> or secret manager</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Language switcher script -->
     <script>
-        function showLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('[id^="content-"]').forEach(content => content.classList.remove('active'));
-            
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.hasAttribute('data-lang-' + lang)) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
             event.target.classList.add('active');
-            document.getElementById('content-' + lang).classList.add('active');
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        // Restore language preference
+        const savedLang = localStorage.getItem('preferred-lang');
+        if (savedLang) {
+            const btn = document.querySelector(`.lang-btn[onclick="setLanguage('${savedLang}')"]`);
+            if (btn) {
+                setLanguage(savedLang);
+                btn.classList.add('active');
+            }
         }
     </script>
 </body>
