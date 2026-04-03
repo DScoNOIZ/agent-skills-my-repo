@@ -20,9 +20,13 @@
 
 ### About
 
-This repository hosts custom skills for [Roo Code](https://roocode.com) Your AI Software Engineering Team is here.
+This repository hosts custom skills for [Roo Code](https://roocode.com) — Your AI Software Engineering Team.
+
 Interactive in the IDE, autonomous in the cloud. Each skill extends Roo's capabilities with custom tools, integrations, and workflows.
- ```
+
+### Available Skills
+
+- **[Custom Tool Creator](RooCode-Skills/custom-tool-creator/)** — Comprehensive guide for building custom tools for Roo agents (CommonJS, ES Modules, TypeScript)
 
 ### Resources
 
@@ -42,9 +46,20 @@ Each skill can have its own license. By contributing, you agree to license your 
 
 Этот репозиторий содержит пользовательские навыки (skills) для AI-ассистента [Roo Code](https://roocode.com). Каждый навык расширяет возможности Roo с помощью кастомных инструментов, интеграций и рабочих процессов.
 
-```
+### Доступные скиллы
+
+- **[Custom Tool Creator](RooCode-Skills/custom-tool-creator/)** — Полное руководство по созданию кастомных инструментов для Roo (CommonJS, ES Modules, TypeScript)
+
 ### Ресурсы
 
 - [Документация Roo Code](https://docs.roocode.com/)
 - [Руководство по Custom Tools](https://docs.roocode.com/features/experimental/custom-tools/)
 - [Спецификация JSON Schema](https://json-schema.org/)
+
+### Лицензия
+
+Каждый скилл может иметь свою собственную лицензию. Внося вклад, вы соглашаетесь лицензировать свой скилл на условиях совместимых с экосистемой Roo Code.
+
+---
+
+**⚠️ Reminder:** All content is AI-generated. Verify everything before use. No liability assumed.
