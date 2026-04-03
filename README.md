@@ -26,7 +26,7 @@ Interactive in the IDE, autonomous in the cloud. Each skill extends Roo's capabi
 
 ### Resources
 
-- [Roo Code Documentation](https://roocode.com/docs](https://docs.roocode.com)
+- [Roo Code Documentation](https://docs.roocode.com)
 - [Custom Tools Guide](https://docs.roocode.com/features/experimental/custom-tools)
 - [JSON Schema Specification](https://json-schema.org/)
 
