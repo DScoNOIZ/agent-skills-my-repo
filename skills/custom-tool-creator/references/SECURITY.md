@@ -1,3 +1,11 @@
+# ⚠️ BIOHAZARD WARNING - AI-GENERATED CONTENT ⚠️
+
+**English:** This entire document was created by AI (Step-3.5-Flash). The repository owner admits **complete ignorance of code** and cannot verify accuracy, safety, or legitimacy. Content may contain errors, vulnerabilities, or malicious code (unintentional). **Use entirely at your own risk. No responsibility is assumed.** All reviewers and users must independently verify everything before use!
+
+**Русский:** Этот документ полностью создан ИИ (Step-3.5-Flash). Владелец репозитория признаёт **полную неграмотность в коде** и не может гарантировать точность, безопасность или легитимность. Контент может содержать ошибки, уязвимости или вредоносный код (непреднамеренно). **Используйте исключительно на свой страх и риск. Никакой ответственности не берётся.** Все проверяющие и пользователи обязаны самостоятельно всё проверить перед использованием!
+
+---
+
 # Security Guidelines for Custom Tools
 
 ## Threat Model
