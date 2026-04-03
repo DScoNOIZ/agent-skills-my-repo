@@ -71,12 +71,41 @@
             color: white;
             opacity: 0.7;
         }
+        .ai-warning {
+            background: #ff0000;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            border: 4px solid #cc0000;
+            box-shadow: 0 4px 20px rgba(255,0,0,0.3);
+        }
+        .ai-warning-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🛠️ Agent Skills Hub</h1>
         <p>Collection of custom tools and skills for Roo agents | Коллекция кастомных инструментов для агентов Roo</p>
+    </div>
+    
+    <div class="ai-warning">
+        <div class="ai-warning-title">☣️ BIOHAZARD - AI-GENERATED CONTENT ☣️</div>
+        <div>
+            <strong>English:</strong> Everything on this site was created by AI (Step-3.5-Flash). The repository owner admits ignorance of code and cannot verify accuracy or safety. Content may contain errors or malicious code (unintentional). Use at your own risk. No responsibility assumed. Reviewer must verify everything themselves!
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>Русский:</strong> Всё на этом сайте создано ИИ (Step-3.5-Flash). Владелец репозитория признаёт свою неграмотность в коде и не может гарантировать точность или безопасность. Контент может содержать ошибки или вредоносный код (непреднамеренно). Используйте на свой страх и риск. Никакой ответственности не берётся. Проверяйте всё самостоятельно!
+        </div>
     </div>
     
     <div class="skills-grid" id="skillsGrid">
