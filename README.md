@@ -22,14 +22,7 @@
 
 This repository hosts custom skills for [Roo Code](https://roocode.com) Your AI Software Engineering Team is here.
 Interactive in the IDE, autonomous in the cloud. Each skill extends Roo's capabilities with custom tools, integrations, and workflows.
-
-
-### Development Tools
-
-- `scripts/validate-skill.js` - Validate skill structure locally
-  ```bash
-  node scripts/validate-skill.js skills/my-skill
-  ```
+ ```
 
 ### Resources
 
