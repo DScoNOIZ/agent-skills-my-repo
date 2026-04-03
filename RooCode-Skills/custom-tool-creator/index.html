@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Tool Creator | Agent Skills Hub</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        h2 {
+            color: #764ba2;
+            margin-top: 25px;
+        }
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+        .lang-btn.active {
+            background: #764ba2;
+        }
+        .content-en, .content-ru {
+            display: none;
+        }
+        .content-en.active, .content-ru.active {
+            display: block;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+        a {
+            color: #667eea;
+        }
+        ul, ol {
+            line-height: 1.8;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .biohazard {
+            background: #ff0000;
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            border: 5px solid #cc0000;
+            box-shadow: 0 4px 25px rgba(255,0,0,0.4);
+        }
+        .biohazard-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .collection-note {
+            background: rgba(255,255,255,0.15);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="../../index.html" class="back-link">← Back to all skills / ← Назад ко всем скиллам</a>
+    
+    <div class="biohazard">
+        <div class="biohazard-title">☣️ BIOHAZARD - AI-GENERATED CONTENT ☣️</div>
+        <div>
+            <strong>English:</strong> Everything on this page was created by AI (Step-3.5-Flash). The repository owner admits ignorance of code and cannot verify accuracy or safety. Content may contain errors or malicious code (unintentional). <strong>This repository is for personal collection only and is made public for convenience.</strong> Use at your own risk. No responsibility assumed. Reviewer must verify everything themselves!
+        </div>
+        <div class="collection-note">
+            <em>This is my personal skill collection — I make it public simply because it's more convenient for me.</em>
+            <br>
+            <em>Это моя личная коллекция скиллов — я делаю её открытой просто потому что мне так удобнее.</em>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>Русский:</strong> Всё на этой странице создано ИИ (Step-3.5-Flash). Владелец репозитория признаёт свою неграмотность в коде и не может гарантировать точность или безопасность. Контент может содержать ошибки или вредоносный код (непреднамеренно). <strong>Этот репозиторий чисто для моей коллекции и просто я его сделал открытым чтобы мне было удобнее.</strong> Используйте на свой страх и риск. Никакой ответственности не берётся. Проверяйте всё самостоятельно!
+        </div>
+    </div>
+    
+    <div class="card">
+        <h1>🛠️ Custom Tool Creator</h1>
+        
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="showLang('en')">English</button>
+            <button class="lang-btn" onclick="showLang('ru')">Русский</button>
+        </div>
+        
+        <div id="content-en" class="content-en active">
+            <h2>📖 Overview</h2>
+            <p>The <strong>Custom Tool Creator</strong> skill is an comprehensive guide for building custom tools for Roo agents. It covers all supported formats: CommonJS, ES Modules, and TypeScript, providing templates, best practices, and security guidelines.</p>
+            
+            <h2>✨ Features</h2>
+            <ul>
+                <li>Complete templates for CommonJS, ESM, and TypeScript</li>
+                <li>Security best practices and input validation</li>
+                <li>Error handling patterns</li>
+                <li>Testing strategies and examples</li>
+                <li>Deployment and packaging instructions</li>
+                <li>Multi-tool support in a single file</li>
+            </ul>
+            
+            <h2>📚 Documentation Structure</h2>
+            <ul>
+                <li><code>SKILL.md</code> - Main skill documentation</li>
+                <li><code>fragments/</code> - Detailed topic guides</li>
+                <li><code>references/</code> - Reference materials</li>
+                <li><code>assets/</code> - Templates and examples</li>
+                <li><code>scripts/</code> - Validation and testing</li>
+            </ul>
+            
+            <h2>🚀 Quick Start</h2>
+            <p>Choose your preferred format and copy the template from <code>assets/template-*.js</code> or <code>assets/template-typescript.ts</code>. Fill in the tool definition, implement your logic, and follow the security guidelines.</p>
+            
+            <div class="warning">
+                <strong>⚠️ Security Note:</strong> Always validate inputs, handle errors properly, and avoid executing arbitrary code. See <code>references/SECURITY.md</code> for detailed security considerations.
+            </div>
+            
+            <h2>🔗 Resources</h2>
+            <ul>
+                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/SKILL.md">SKILL.md</a> - Complete skill documentation</li>
+                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/references/FORMAT_SPEC.md">Format Specification</a> - Tool format details</li>
+                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/assets/examples/">Examples</a> - Working examples</li>
+            </ul>
+        </div>
+        
+        <div id="content-ru" class="content-ru">
+            <h2>📖 Обзор</h2>
+            <p>Скилл <strong>Custom Tool Creator</strong> — это комплексное руководство по созданию кастомных инструментов для агентов Roo. Освещает все поддерживаемые форматы: CommonJS, ES Modules и TypeScript, предоставляя шаблоны, лучшие практики и руководства по безопасности.</p>
+            
+            <h2>✨ Особенности</h2>
+            <ul>
+                <li>Полные шаблоны для CommonJS, ESM и TypeScript</li>
+                <li>Лучшие практики безопасности и валидация входных данных</li>
+                <li>Паттерны обработки ошибок</li>
+                <li>Стратегии тестирования и примеры</li>
+                <li>Инструкции по развертыванию и упаковке</li>
+                <li>Поддержка нескольких инструментов в одном файле</li>
+            </ul>
+            
+            <h2>📚 Структура документации</h2>
+            <ul>
+                <li><code>SKILL.md</code> - Основная документация скилла</li>
+                <li><code>fragments/</code> - Подробные руководства по темам</li>
+                <li><code>references/</code> - Справочные материалы</li>
+                <li><code>assets/</code> - Шаблоны и примеры</li>
+                <li><code>scripts/</code> - Валидация и тестирование</li>
+            </ul>
+            
+            <h2>🚀 Быстрый старт</h2>
+            <p>Выберите предпочитаемый формат и скопируйте шаблон из <code>assets/template-*.js</code> или <code>assets/template-typescript.ts</code>. Заполните определение инструмента, реализуйте логику и следуйте рекомендациям по безопасности.</p>
+            
+            <div class="warning">
+                <strong>⚠️ Примечание по безопасности:</strong> Всегда валидируйте входные данные, правильно обрабатывайте ошибки и избегайте выполнения произвольного кода. См. <code>references/SECURITY.md</code> для подробных соображений по безопасности.
+            </div>
+            
+            <h2>🔗 Ресурсы</h2>
+            <ul>
+                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/SKILL.md">SKILL.md</a> - Полная документация скилла</li>
+                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/references/FORMAT_SPEC.md">Спецификация формата</a> - Детали формата инструментов</li>
+                <li><a href="https://github.com/DScoNOIZ/agent-skills-my-repo/blob/main/RooCode-Skills/custom-tool-creator/assets/examples/">Примеры</a> - Рабочие примеры</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        function showLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('[id^="content-"]').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById('content-' + lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
