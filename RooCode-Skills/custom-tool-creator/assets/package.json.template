@@ -1,0 +1,27 @@
+{
+  "name": "my-custom-tools",
+  "version": "1.0.0",
+  "description": "Custom Tools for Roo Code",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "validate": "node ~/.roo/skills/custom-tool-creator/scripts/validate_tools.js .roo/tools/**/*.js"
+  },
+  "dependencies": {
+    // Add runtime dependencies here (e.g., axios, xml2js)
+  },
+  "devDependencies": {
+    "@roo-code/types": "^0.1.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["roo-code", "custom-tools"],
+  "author": "",
+  "license": "MIT"
+}
