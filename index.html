@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Skills Hub</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .skill-card h2 {
+            margin: 0 0 10px 0;
+            color: #667eea;
+            font-size: 1.4rem;
+        }
+        .skill-card .lang-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .skill-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛠️ Agent Skills Hub</h1>
+        <p>Collection of custom tools and skills for Roo agents | Коллекция кастомных инструментов для агентов Roo</p>
+    </div>
+    
+    <div class="skills-grid" id="skillsGrid">
+        <!-- Skills will be dynamically loaded -->
+    </div>
+    
+    <div class="footer">
+        <p>Made with ❤️ for the Roo community | Сделано с ❤️ для сообщества Roo</p>
+    </div>
+
+    <script>
+        // Skills configuration - easily expandable
+        const skills = [
+            {
+                id: 'custom-tool-creator',
+                name: {
+                    en: 'Custom Tool Creator',
+                    ru: 'Создатель Кастомных Инструментов'
+                },
+                description: {
+                    en: 'Expert in building custom tools for Roo agents in all formats (CommonJS, ES Modules, TypeScript). Provides templates, best practices, and security guidelines.',
+                    ru: 'Эксперт по созданию кастомных инструментов для агентов Roo во всех форматах (CommonJS, ES Modules, TypeScript). Предоставляет шаблоны, лучшие практики и руководства по безопасности.'
+                },
+                languages: ['en', 'ru']
+            }
+            // Add more skills here
+        ];
+
+        const grid = document.getElementById('skillsGrid');
+        
+        skills.forEach(skill => {
+            const card = document.createElement('a');
+            card.href = `./skills/${skill.id}/index.html`;
+            card.className = 'skill-card';
+            
+            const badges = skill.languages.map(lang => 
+                `<span class="lang-badge">${lang.toUpperCase()}</span>`
+            ).join('');
+            
+            card.innerHTML = `
+                <h2>${skill.name.en} / ${skill.name.ru}</h2>
+                <div style="margin-bottom: 15px;">${badges}</div>
+                <p>${skill.description.en}</p>
+                <p style="margin-top: 10px; font-style: italic;">${skill.description.ru}</p>
+            `;
+            
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
