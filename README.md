@@ -26,8 +26,8 @@ Interactive in the IDE, autonomous in the cloud. Each skill extends Roo's capabi
 
 ### Resources
 
-- [Roo Code Documentation](https://roocode.com/docs)
-- [Custom Tools Guide](https://roocode.com/docs/skills/custom-tools)
+- [Roo Code Documentation](https://roocode.com/docs](https://docs.roocode.com)
+- [Custom Tools Guide](https://docs.roocode.com/features/experimental/custom-tools)
 - [JSON Schema Specification](https://json-schema.org/)
 
 ### License
@@ -45,6 +45,6 @@ Each skill can have its own license. By contributing, you agree to license your 
 ```
 ### Ресурсы
 
-- [Документация Roo Code](https://roocode.com/docs)
-- [Руководство по Custom Tools](https://roocode.com/docs/skills/custom-tools)
+- [Документация Roo Code](https://docs.roocode.com)
+- [Руководство по Custom Tools](https://docs.roocode.com/features/experimental/custom-tools)
 - [Спецификация JSON Schema](https://json-schema.org/)
