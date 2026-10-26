@@ -1,52 +1,41 @@
 # Language Enforcement — Agent-Facing Artifacts
 
-User correction (2026-07-15): All agent-facing documentation (skills, references,
-prompts, system prompts, delegate context, cron prompts, comments) MUST be in
-English ONLY. User-language text in these artifacts is a bug.
-
-## Root Rule
+## Root Rule (tied to OWNER CONSTANTS)
 
 ```
-Agent-facing artifacts: EN ONLY — skills, references, templates, scripts,
-  prompts, system prompts, delegate context, memory entries, cron prompts,
-  code comments, commit messages, technical docs.
-User-facing output: user's language (RU for this user).
+Agent-facing artifacts → AGENT_FACING_LANGUAGE (en)
+User-facing output     → USER_LANGUAGE (ru for current owner)
 ```
+
+See OWNER CONSTANTS block in SKILL.md. Those values are the source of truth for this installation.
 
 ## What This Means
 
-- SKILL.md body → EN (descriptions, steps, tables, code blocks)
-- Reference files → EN (examples, API docs, error transcripts, explanations)
-- Delegate_task context → EN (instructions, file paths, commands)
-- Cron prompts → EN (goals, instructions)
-- Memory entries → EN (facts, observations)
-- System prompt → EN (rules, directives)
-- Code comments → EN
-- **User-facing text IN contexts** (e.g. error messages shown to user) → user's language
+- SKILL.md body, references, templates, scripts, prompts, system prompts, delegate context, memory entries, cron prompts, code comments, commit messages, technical docs → AGENT_FACING_LANGUAGE only.
+- Replies, explanations, error messages shown to the user → USER_LANGUAGE.
 
 ## What This Forbids
 
 | ❌ Wrong | ✅ Right |
 |----------|----------|
-| `Rule: Loop внутри пары` | `Rule: Loop within pair` |
-| `Signal: User "всё в одну каску"` | `Signal: User frustration with solo work` |
-| `NEVER "см. выше"` | `NEVER "see above"` |
-| `context="""ПОЛНЫЙ КОНТЕКСТ:"""` | `context="""FULL CONTEXT:"""` |
-| `# Настройки` (comment in skill) | `# Settings` |
+| User-language prose inside SKILL.md | AGENT_FACING_LANGUAGE only |
+| Mixing languages in agent-facing docs | Pure AGENT_FACING_LANGUAGE |
+| Leaving another owner's language constants | Rewrite OWNER CONSTANTS first |
 
-## Exceptions (rare, justified)
+## Exceptions (rare)
 
-1. **Trigger/keyword patterns** — actual Russian phrases the agent must recognize
-   from user input (e.g. `"суперперфекционизм"`, `"в одну каску"`). These are
-   *match patterns*, not prose. Keep them in original language.
-2. **Direct quotes from user** — if the user said something in Russian that the
-   agent needs to reference verbatim in a context. Wrap as quote, not prose body.
-3. **Locale/language configuration values** — `LANG: ru`, `language: ru`. These
-   are config, not prose.
+1. Trigger/keyword patterns the agent must match from user input (keep original language).
+2. Direct verbatim quotes from the user (wrap as quote).
+3. Locale/config values (`LANG: xx`).
 
 ## Enforcement Check
 
 Before saving any agent-facing file:
-1. Scan for Cyrillic, Chinese, Arabic, etc. in prose sections (not code blocks).
-2. If found → is it a trigger pattern, verbatim quote, or config value?
-3. No → translate to English. This is a bugfix, not optional cleanup.
+1. Scan for non-AGENT_FACING_LANGUAGE prose outside code blocks and allowed exceptions.
+2. If found and not an exception → convert. This is a bug fix.
+
+## When the skill is used by someone else
+
+If this skill is downloaded by a different user or agent:
+- The OWNER CONSTANTS must be rewritten to that user's language and preferences before any other work.
+- Do not keep the previous owner's USER_LANGUAGE or other personal constants.
